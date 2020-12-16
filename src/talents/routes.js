@@ -5,9 +5,24 @@ const routes = express.Router({
 });
 
 routes.get('/', (req, res) => {
+    let data = [
+        {
+            nome:"Anna Julia",
+            idade: 7,
+            cidade: "Ibiúna"
+        },
+        {
+            nome:"Luana Aparecida",
+            idade: 28,
+            cidade: "Ibiúna"
+        }
+    ];
+
     response = {
-        message: "Você está recebendo uma lista de talentos!"
+        message: "Você está recebendo uma lista de talentos!",
+        data
     };
+    
     res.status("200").json(response);
 });
 
