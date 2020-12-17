@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require("axios");
 
 const routes = express.Router({
     mergeParams: true
@@ -7,12 +8,12 @@ const routes = express.Router({
 routes.get('/', (req, res) => {
     let data = [
         {
-            nome:"Anna Julia",
-            idade: 7,
+            nome: "Anna Julia",
+            idade: 18,
             cidade: "Ibiúna"
         },
         {
-            nome:"Luana Aparecida",
+            nome: "Luana Aparecida",
             idade: 28,
             cidade: "Ibiúna"
         }
@@ -22,15 +23,46 @@ routes.get('/', (req, res) => {
         message: "Você está recebendo uma lista de talentos!",
         data
     };
-    
+
     res.status("200").json(response);
 });
 
+routes.get('/{id}', (req, res) => {
+    let data = null;
+
+    if (req.params.id === "1") {
+        data = {
+            id: 1,
+            nome: "Anna Julia",
+            idade: 7,
+            cidade: "Ibiúna"
+        }
+        response = {
+            message: "Oportunidade encontrada com sucesso",
+            data
+        };
+        res.status("200").json(response);
+    }
+
+    response = {
+        message: "Oportunidade não encontrada.",
+        data
+    };
+
+    res.status("404").json(response);
+});
+
 routes.post('/', (req, res) => {
+    let body = req.body; // aqui pegamos os campos que virão na requisição
+
+    // persisto no BD
+
+    FoundMatch(); // starto de forma assincrona o serviço de match
+
     response = {
         message: "Muito obrigado por trazer seu talento para cá!"
     };
-    res.status("200").json(response);
+    res.status("201").json(response);
 });
 
 routes.put('/{id}', (req, res) => {
@@ -47,6 +79,16 @@ routes.delete('/{id}', (req, res) => {
     res.status("200").json(response);
 });
 
-module.exports= {
+module.exports = {
     routes,
 };
+
+async function FoundMatch() {
+    axios.post('localhost:3002/matchings', null)
+        .then(function (response) {
+            return;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
