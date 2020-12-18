@@ -11,16 +11,26 @@
     "url": "git+https://github.com/ThiSlomski/interaTalents.git"
   },
   "keywords": [
-    "node.js",
-    "microservices",
-    "serverless",
-    "express",
-    "noSQL"
+    "Node.js",
+    "Microservices",
+    "Serverless",
+    "Express",
+    "NoSQL"
   ],
   "author": "Thiago Slomski",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ThiSlomski/interaTalents/issues"
   },
-  "homepage": "https://github.com/ThiSlomski/interaTalents#readme"
+  "homepage": "https://github.com/ThiSlomski/interaTalents#readme",
+  "dependencies": {
+    "aws-serverless-express": "^3.4.0",
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
